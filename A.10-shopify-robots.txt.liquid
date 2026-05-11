@@ -1,0 +1,63 @@
+{%- comment -%}
+Create this file at templates/robots.txt.liquid in your theme.
+This overrides Shopify's default robots.txt output.
+The for-loop at the top preserves Shopify's default disallows for /admin,
+/cart, /orders, /checkouts/ and the search-parameter paths.
+Test the live URL at yourstore.com/robots.txt after deploying.
+{%- endcomment -%}
+
+{% for group in robots.default_groups %}
+  {{- group.user_agent }}
+  {%- for rule in group.rules -%}
+    {{ rule }}
+  {%- endfor -%}
+  {%- if group.sitemap != blank %}
+    {{ group.sitemap }}
+  {%- endif %}
+{% endfor %}
+
+# AI bots — explicit allows added above platform defaults
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Bots to block — adjust per market
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /

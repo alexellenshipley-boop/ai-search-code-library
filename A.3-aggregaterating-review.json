@@ -1,0 +1,57 @@
+{
+  "_comment": "These two properties are appended INSIDE the Product entity from A.2, after the offers block. Do not ship as a standalone entity. Do not ship at all unless the product carries at least five real reviews.",
+
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{ AVERAGE_RATING — to one decimal place, e.g. 4.7 }}",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "{{ TOTAL_NUMBER_OF_RATINGS — includes one-tap star ratings without text }}",
+    "reviewCount": "{{ TOTAL_NUMBER_OF_WRITTEN_REVIEWS — ratings with text content only }}"
+  },
+
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "{{ REVIEWER_NAME }}"
+      },
+      "datePublished": "{{ YYYY-MM-DD }}",
+      "reviewBody": "{{ REVIEW_TEXT — direct from the review platform, do not edit }}"
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "{{ REVIEWER_NAME }}"
+      },
+      "datePublished": "{{ YYYY-MM-DD }}",
+      "reviewBody": "{{ REVIEW_TEXT }}"
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "{{ REVIEWER_NAME }}"
+      },
+      "datePublished": "{{ YYYY-MM-DD }}",
+      "reviewBody": "{{ REVIEW_TEXT }}"
+    }
+  ]
+}

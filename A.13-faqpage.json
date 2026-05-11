@@ -1,0 +1,46 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "{{ QUESTION_ONE — phrased exactly as a customer would ask it }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ ANSWER_ONE — 40 to 80 words, full sentences, no bullet points }}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{{ QUESTION_TWO }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ ANSWER_TWO }}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{{ QUESTION_THREE }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ ANSWER_THREE }}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{{ QUESTION_FOUR }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ ANSWER_FOUR }}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{{ QUESTION_FIVE }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ ANSWER_FIVE }}"
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ BRAND_NAME }}",
+  "url": "https://{{ DOMAIN.COM }}",
+  "logo": "https://{{ DOMAIN.COM }}/assets/logo.png",
+  "description": "{{ ONE-PARAGRAPH BRAND DESCRIPTION — 50 to 80 words, factual, no marketing language }}",
+  "foundingDate": "{{ YYYY-MM-DD }}",
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "{{ FOUNDER_NAME }}"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ STREET_ADDRESS }}",
+    "addressLocality": "{{ CITY }}",
+    "addressRegion": "{{ COUNTY }}",
+    "postalCode": "{{ POSTCODE }}",
+    "addressCountry": "GB"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "{{ +44... }}",
+    "contactType": "customer service",
+    "email": "{{ EMAIL }}",
+    "areaServed": "GB",
+    "availableLanguage": "English"
+  },
+  "sameAs": [
+    "https://www.wikidata.org/wiki/{{ Q_ID }}",
+    "https://en.wikipedia.org/wiki/{{ ARTICLE_SLUG }}",
+    "https://www.crunchbase.com/organization/{{ ORG_SLUG }}",
+    "https://www.linkedin.com/company/{{ COMPANY_SLUG }}",
+    "https://uk.trustpilot.com/review/{{ DOMAIN.COM }}",
+    "https://www.instagram.com/{{ HANDLE }}",
+    "https://www.facebook.com/{{ PAGE_SLUG }}",
+    "https://www.youtube.com/@{{ CHANNEL_HANDLE }}",
+    "https://find-and-update.company-information.service.gov.uk/company/{{ COMPANIES_HOUSE_NUMBER }}"
+  ]
+}

@@ -1,0 +1,151 @@
+<!--
+  A.19 — Squarespace Code Injection Blocks
+
+  Squarespace's schema gap: the platform auto-generates basic Product, Article and
+  Event schema but omits FAQPage, the Organization-level sameAs array, ImageObject,
+  Speakable, BreadcrumbList and the UCP-required offer fields. Code injection closes
+  the gap. Available on Business plans and above.
+
+  Where to inject:
+  - SITE-WIDE BLOCKS: Settings → Advanced → Code Injection → Header
+  - PAGE-SPECIFIC BLOCKS: Page Settings → Advanced → Page Header Code Injection
+
+  What goes where:
+  - Homepage (site header): A.6 Organization, A.16 WebSite/SearchAction
+  - Category pages (page header): A.13 FAQPage, A.14 BreadcrumbList
+  - Product pages (page header): A.13 FAQPage, A.7 ImageObject (per primary image)
+  - Article pages (page header): A.15 Person, A.13 FAQPage if applicable
+
+  Wrap each JSON-LD block from the library in <script> tags as below.
+-->
+
+
+<!-- HOMEPAGE: SITE HEADER INJECTION -->
+
+<script type="application/ld+json" data-custom="true">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ BRAND_NAME }}",
+  "url": "https://{{ DOMAIN.COM }}",
+  "logo": "https://{{ DOMAIN.COM }}/assets/logo.png",
+  "sameAs": [
+    "https://www.wikidata.org/wiki/{{ Q_ID }}",
+    "https://www.linkedin.com/company/{{ COMPANY_SLUG }}",
+    "https://uk.trustpilot.com/review/{{ DOMAIN.COM }}"
+  ]
+}
+</script>
+
+<script type="application/ld+json" data-custom="true">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ BRAND_NAME }}",
+  "url": "https://{{ DOMAIN.COM }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://{{ DOMAIN.COM }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+
+<!-- PRODUCT PAGE: PAGE HEADER INJECTION -->
+<!-- For product pages where the injected schema supersedes the Squarespace auto-schema, -->
+<!-- include the suppression script below to remove the duplicate Product entity. -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(function(s) {
+      if (s.textContent.includes('"@type":"Product"') && !s.dataset.custom) {
+        s.remove();
+      }
+    });
+  });
+</script>
+
+<script type="application/ld+json" data-custom="true">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{ PRODUCT_NAME }}",
+  "sku": "{{ SKU }}",
+  "gtin13": "{{ GTIN }}",
+  "brand": { "@type": "Brand", "name": "{{ BRAND_NAME }}" },
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ PRICE }}",
+    "priceCurrency": "GBP",
+    "availability": "https://schema.org/InStock",
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "{{ SHIPPING_COST }}",
+        "currency": "GBP"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "GB"
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "GB",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 30,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    }
+  }
+}
+</script>
+
+
+<!-- CATEGORY OR PRODUCT PAGE: FAQPage INJECTION -->
+<!-- Match the questions and answers to the rendered FAQ section on the page. -->
+
+<script type="application/ld+json" data-custom="true">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "{{ QUESTION_ONE }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ ANSWER_ONE }}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{{ QUESTION_TWO }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ ANSWER_TWO }}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{{ QUESTION_THREE }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ ANSWER_THREE }}"
+      }
+    }
+  ]
+}
+</script>
+
+
+<!--
+  Validation after every injection:
+  1. Save the page in Squarespace.
+  2. Run the public URL through search.google.com/test/rich-results.
+  3. Confirm exactly one clean Product entity, one clean FAQPage entity, etc per page.
+  4. The data-custom="true" attribute prevents the suppression script from removing
+     your injected blocks. Do not remove it.
+-->

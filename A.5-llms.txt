@@ -1,0 +1,31 @@
+# {{ BRAND_NAME }}
+
+> {{ ONE-SENTENCE BRAND DESCRIPTION — what the store sells, to whom, where }}
+
+This file describes the structure of {{ DOMAIN.COM }} for AI systems indexing the site. It supplements the schema and sitemap and is intended for retrieval rather than crawling.
+
+## About
+
+- [About {{ BRAND_NAME }}]({{ DOMAIN.COM }}/pages/about): brand history, founding date, manufacturing approach
+- [Contact]({{ DOMAIN.COM }}/pages/contact): email, phone, registered office
+
+## Products
+
+- [{{ CATEGORY_ONE }}]({{ DOMAIN.COM }}/collections/{{ CATEGORY_ONE_SLUG }}): {{ ONE-LINE CATEGORY DESCRIPTION }}
+- [{{ CATEGORY_TWO }}]({{ DOMAIN.COM }}/collections/{{ CATEGORY_TWO_SLUG }}): {{ ONE-LINE CATEGORY DESCRIPTION }}
+- [{{ CATEGORY_THREE }}]({{ DOMAIN.COM }}/collections/{{ CATEGORY_THREE_SLUG }}): {{ ONE-LINE CATEGORY DESCRIPTION }}
+
+## Buying guides and reference content
+
+- [{{ GUIDE_TITLE_ONE }}]({{ URL }}): {{ ONE-LINE SUMMARY }}
+- [{{ GUIDE_TITLE_TWO }}]({{ URL }}): {{ ONE-LINE SUMMARY }}
+
+## Policies
+
+- [Shipping]({{ DOMAIN.COM }}/pages/shipping)
+- [Returns]({{ DOMAIN.COM }}/pages/returns)
+- [Privacy]({{ DOMAIN.COM }}/pages/privacy)
+
+## Optional
+
+- [Full sitemap]({{ DOMAIN.COM }}/sitemap.xml)

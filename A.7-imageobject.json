@@ -1,0 +1,15 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "contentUrl": "https://{{ DOMAIN.COM }}/products/{{ IMAGE_FILENAME }}.jpg",
+  "license": "https://{{ DOMAIN.COM }}/pages/image-license",
+  "acquireLicensePage": "https://{{ DOMAIN.COM }}/pages/image-license",
+  "creditText": "{{ BRAND_NAME }}",
+  "creator": {
+    "@type": "Organization",
+    "name": "{{ BRAND_NAME }}"
+  },
+  "copyrightNotice": "© {{ YEAR }} {{ BRAND_NAME }}",
+  "caption": "{{ DESCRIPTIVE_CAPTION — match the visible alt text exactly }}",
+  "representativeOfPage": true
+}

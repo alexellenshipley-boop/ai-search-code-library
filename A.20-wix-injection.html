@@ -1,0 +1,121 @@
+<!--
+  A.20 — Wix Custom Code Blocks
+
+  Where to inject:
+  - Settings → Advanced → Custom Code → + Add Custom Code
+  - Apply to: All pages (for site-wide blocks) or specific pages (for page blocks)
+  - Place code in: HEAD (not Body Start, not Body End)
+
+  Important: schema blocks must fire from Head to ensure the retrieval system has
+  the structured data available before Wix's own JavaScript runs.
+
+  What goes where:
+  - All pages: A.6 Organization, A.16 WebSite/SearchAction
+  - Product pages: A.7 ImageObject (per primary image), A.8 Speakable, hasMerchantReturnPolicy fragment
+  - Category pages: A.13 FAQPage, A.14 BreadcrumbList
+  - Article pages: A.15 Person, A.13 FAQPage if applicable
+
+  Wix Stores' native Product schema is more complete than Squarespace's — it does
+  emit shippingDetails and AggregateRating when the data is present — but does NOT
+  emit hasMerchantReturnPolicy, the founder-level Person bindings, or Speakable.
+  Inject those at the page level.
+-->
+
+
+<!-- ALL PAGES: SITE-WIDE INJECTION (Head) -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ BRAND_NAME }}",
+  "url": "https://{{ DOMAIN.COM }}",
+  "logo": "https://{{ DOMAIN.COM }}/assets/logo.png",
+  "sameAs": [
+    "https://www.wikidata.org/wiki/{{ Q_ID }}",
+    "https://www.linkedin.com/company/{{ COMPANY_SLUG }}",
+    "https://uk.trustpilot.com/review/{{ DOMAIN.COM }}",
+    "https://www.instagram.com/{{ HANDLE }}"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ BRAND_NAME }}",
+  "url": "https://{{ DOMAIN.COM }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://{{ DOMAIN.COM }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+
+<!-- PRODUCT PAGES: PAGE-LEVEL INJECTION (Head) -->
+<!-- Adds the fields Wix Stores does not emit by default. -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "url": "{{ PAGE_URL }}",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [
+      ".product-summary",
+      ".faq-block"
+    ]
+  }
+}
+</script>
+
+
+<!-- CATEGORY OR PRODUCT PAGES: FAQPage INJECTION (Head) -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "{{ QUESTION_ONE }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ ANSWER_ONE }}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{{ QUESTION_TWO }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ ANSWER_TWO }}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{{ QUESTION_THREE }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ ANSWER_THREE }}"
+      }
+    }
+  ]
+}
+</script>
+
+
+<!--
+  robots.txt on Wix is editable through Settings → SEO Tools → Robots.txt Editor.
+  Paste the A.4 universal template into the editor and save.
+
+  Known issue: in 2025–2026 some long-running Wix stores have hit a panel-level
+  bug where the file appears to save but quietly resets after deployment. Always
+  verify the live file by fetching yourstore.com/robots.txt in a browser after
+  saving. If it resets, escalate via Wix support.
+-->

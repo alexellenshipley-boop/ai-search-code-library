@@ -1,0 +1,62 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{ PRODUCT_NAME }}",
+  "image": [
+    "{{ PRIMARY_IMAGE_URL }}",
+    "{{ SECONDARY_IMAGE_URL }}",
+    "{{ THIRD_IMAGE_URL }}"
+  ],
+  "description": "{{ PRODUCT_DESCRIPTION — 150 to 300 words, plain language, no marketing puffery }}",
+  "sku": "{{ SKU }}",
+  "gtin13": "{{ GTIN — 13-digit EAN/UPC; use gtin8, gtin12 or gtin14 as appropriate }}",
+  "mpn": "{{ MANUFACTURER_PART_NUMBER }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "{{ BRAND_NAME }}"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ PRODUCT_PAGE_URL }}",
+    "priceCurrency": "GBP",
+    "price": "{{ PRICE — numeric, no currency symbol, two decimal places }}",
+    "priceValidUntil": "{{ YYYY-MM-DD — typically end of current calendar year }}",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "https://schema.org/InStock",
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "{{ SHIPPING_COST }}",
+        "currency": "GBP"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "GB"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 1,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 3,
+          "unitCode": "DAY"
+        }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "GB",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 30,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    }
+  }
+}

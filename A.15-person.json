@@ -1,0 +1,21 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://{{ DOMAIN.COM }}/#author-{{ AUTHOR_SLUG }}",
+  "name": "{{ AUTHOR_NAME }}",
+  "url": "https://{{ DOMAIN.COM }}/pages/author/{{ AUTHOR_SLUG }}",
+  "image": "https://{{ DOMAIN.COM }}/assets/authors/{{ AUTHOR_SLUG }}.jpg",
+  "jobTitle": "{{ JOB_TITLE }}",
+  "description": "{{ TWO-LINE PROFESSIONAL BIO — credentials, experience, beat }}",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "{{ BRAND_NAME }}",
+    "url": "https://{{ DOMAIN.COM }}"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/{{ LINKEDIN_HANDLE }}",
+    "https://www.wikidata.org/wiki/{{ Q_ID — only if the author has a Wikidata entry }}",
+    "https://twitter.com/{{ HANDLE }}",
+    "https://www.amazon.co.uk/author/{{ AUTHOR_CENTRAL_SLUG }}"
+  ]
+}
