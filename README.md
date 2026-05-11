@@ -1,6 +1,6 @@
 # AI Search Code Library
 
-The companion code library for *How to Rank Your Ecommerce Store #1 in AI Search* by Fallen Sterling.
+The companion code library for *How to Rank Your Ecommerce Store #1 in AI Search* by Rowan Hart.
 
 Every JSON-LD block, robots.txt template, Liquid snippet, PHP filter and code injection block referenced in the book is reproduced here as a separate file, organised to match the appendix numbering. To download the whole library at once, click the green **Code** button at the top of this page and select **Download ZIP**. To copy a single block, open the file in the browser and use the copy-raw-content button at the top right of the file view.
 
